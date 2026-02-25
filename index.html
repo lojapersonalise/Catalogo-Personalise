@@ -136,7 +136,7 @@
             height: 320px; 
             overflow: hidden;
             border-bottom: 1px solid #f0e6f5;
-            cursor: pointer; /* Muda o cursor para mãozinha indicando que pode clicar */
+            cursor: pointer; 
         }
 
         .imagem-produto img {
@@ -180,7 +180,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Botões */
+        /* Botões dos Produtos */
         .btn-comprar {
             display: inline-flex;
             align-items: center;
@@ -204,41 +204,45 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
 
+        /* =========================================================
+           BOTÃO FLUTUANTE DA CARICATURA
+           ========================================================= */
         .whatsapp-flutuante {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: var(--cor-whatsapp);
-            color: white;
-            border-radius: 50%;
-            width: 65px;
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            bottom: 20px;
+            right: 20px;
             z-index: 1000;
             transition: transform 0.3s ease;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-flutuante img {
+            height: 130px; /* Altura ideal para a caricatura aparecer bem */
+            width: auto;
+            display: block;
+            border-radius: 10px; /* Bordas arredondadas caso a imagem seja quadrada */
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3)); /* Cria uma sombra que contorna a personagem */
         }
 
         .whatsapp-flutuante:hover {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05) rotate(3deg);
         }
 
         /* =========================================================
            MODAL (FOTO AMPLIADA)
            ========================================================= */
         .modal {
-            display: none; /* Escondido por padrão */
+            display: none; 
             position: fixed;
             z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Fundo escuro */
+            background-color: rgba(0, 0, 0, 0.85); 
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -265,7 +269,7 @@
 
         .modal-content img {
             width: 100%;
-            max-height: 70vh; /* Não deixa a foto ultrapassar a tela */
+            max-height: 70vh; 
             object-fit: contain;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -618,8 +622,8 @@
         <p>Rua X Qd 24 Lt 12 Divino Espirito Santo | CEP: 75831020</p>
     </footer>
 
-    <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20os%20produtos%20da%20Loja%20Personalise." class="whatsapp-flutuante" target="_blank" title="Fale conosco no WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20os%20produtos%20da%20Loja%20Personalise." class="whatsapp-flutuante" target="_blank" title="Fale comigo no WhatsApp">
+        <img src="caricatura.png" alt="Fale comigo no WhatsApp">
     </a>
 
     <div id="imageModal" class="modal">
@@ -633,19 +637,16 @@
     </div>
 
     <script>
-        // Função para abrir a foto ampliada
         function abrirModal(imgSrc, whatsappLink) {
             document.getElementById('imgModal').src = imgSrc;
             document.getElementById('btnModalWhatsapp').href = whatsappLink;
             document.getElementById('imageModal').classList.add('ativo');
         }
 
-        // Função para fechar a foto
         function fecharModal() {
             document.getElementById('imageModal').classList.remove('ativo');
         }
 
-        // Fechar clicando fora da foto
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
             if (event.target === modal) {
@@ -653,7 +654,6 @@
             }
         }
 
-        // Configura automaticamente todas as fotos para abrirem ao clicar
         document.addEventListener('DOMContentLoaded', function() {
             const produtos = document.querySelectorAll('.cartao-produto');
             
