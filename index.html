@@ -38,7 +38,7 @@
         /* Cabeçalho */
         header {
             text-align: center;
-            padding: 4rem 1rem 3rem;
+            padding: 3rem 1rem 2rem;
             background-color: transparent;
         }
 
@@ -47,7 +47,7 @@
         }
 
         .logo-img {
-            max-width: 220px; 
+            max-width: 200px; 
             height: auto;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(106, 68, 136, 0.15);
@@ -64,7 +64,7 @@
 
         .slogan {
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #999;
             font-weight: 300;
             letter-spacing: 1px;
@@ -74,19 +74,19 @@
         main {
             max-width: 1000px; 
             margin: 0 auto;
-            padding: 0 1.5rem 2rem;
+            padding: 0 1rem 2rem;
         }
 
         section {
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
         }
 
         section h2 {
             font-family: var(--fonte-titulo);
             color: var(--cor-principal);
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
             position: relative;
         }
 
@@ -101,16 +101,16 @@
             opacity: 0.5;
         }
 
-        /* Grade de Produtos */
+        /* Grade de Produtos: AGORA COM 2 POR LINHA NO CELULAR */
         .grid-produtos {
             display: grid;
-            grid-template-columns: 1fr; 
-            gap: 2.5rem;
+            grid-template-columns: repeat(2, 1fr); /* 2 produtos por linha no celular */
+            gap: 1rem; /* Espaço menor entre produtos no celular */
         }
 
         @media (min-width: 768px) {
             .grid-produtos {
-                grid-template-columns: repeat(2, 1fr); 
+                gap: 2.5rem; /* Espaço maior no PC */
             }
         }
 
@@ -119,24 +119,32 @@
             display: flex;
             flex-direction: column;
             background-color: var(--cor-fundo-cartao);
-            border-radius: 30px;
-            box-shadow: 0 10px 40px rgba(106, 68, 136, 0.06);
+            border-radius: 15px; /* Bordas menores no celular */
+            box-shadow: 0 5px 20px rgba(106, 68, 136, 0.06);
             overflow: hidden;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             height: 100%; 
         }
 
+        @media (min-width: 768px) {
+            .cartao-produto { border-radius: 30px; }
+        }
+
         .cartao-produto:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 45px rgba(106, 68, 136, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(106, 68, 136, 0.12);
         }
 
         .imagem-produto {
             width: 100%;
-            height: 320px; 
+            height: 150px; /* Altura reduzida da foto no celular */
             overflow: hidden;
             border-bottom: 1px solid #f0e6f5;
             cursor: pointer; 
+        }
+
+        @media (min-width: 768px) {
+            .imagem-produto { height: 320px; } /* Altura normal no PC */
         }
 
         .imagem-produto img {
@@ -151,7 +159,7 @@
         }
 
         .info-produto {
-            padding: 2rem;
+            padding: 1rem 0.6rem; /* Padding reduzido no celular */
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -160,24 +168,24 @@
 
         .info-produto h3 {
             font-family: var(--fonte-titulo);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: 1rem; /* Título menor no celular */
+            margin-bottom: 0.5rem;
             color: var(--cor-degrade-escuro);
         }
 
         .info-produto p {
-            font-size: 0.95rem;
+            font-size: 0.8rem; /* Descrição menor no celular */
             color: #777;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin-bottom: 1rem;
+            line-height: 1.4;
             flex-grow: 1; 
         }
 
         .preco {
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Preço menor no celular */
             color: var(--cor-principal);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         /* Botões dos Produtos */
@@ -188,14 +196,28 @@
             background-color: var(--cor-whatsapp);
             color: #fff;
             text-decoration: none;
-            padding: 0.9rem 1.8rem;
-            border-radius: 50px; 
+            padding: 0.6rem 0.5rem; /* Botão menor no celular */
+            border-radius: 25px; 
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.85rem;
             transition: all 0.3s;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            gap: 5px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
             width: 100%; 
+        }
+
+        .btn-comprar i {
+            font-size: 1rem;
+        }
+
+        /* REGRAS PARA O PC (Restaura os tamanhos maiores em telas de computador) */
+        @media (min-width: 768px) {
+            .info-produto { padding: 2rem; }
+            .info-produto h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+            .info-produto p { font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+            .preco { font-size: 1.5rem; margin-bottom: 1.5rem; }
+            .btn-comprar { padding: 0.9rem 1.8rem; font-size: 1rem; border-radius: 50px; gap: 10px; }
+            .btn-comprar i { font-size: 1.2rem; }
         }
 
         .btn-comprar:hover {
@@ -205,12 +227,12 @@
         }
 
         /* =========================================================
-           BOTÃO FLUTUANTE DA CARICATURA
+           BOTÃO FLUTUANTE DA CARICATURA (Ajustado para Celular)
            ========================================================= */
         .whatsapp-flutuante {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 15px;
             z-index: 1000;
             transition: transform 0.3s ease;
             text-decoration: none;
@@ -220,11 +242,17 @@
         }
 
         .whatsapp-flutuante img {
-            height: 130px; /* Altura ideal para a caricatura aparecer bem */
+            height: 80px; /* CARICATURA MENOR NO CELULAR */
             width: auto;
             display: block;
-            border-radius: 10px; /* Bordas arredondadas caso a imagem seja quadrada */
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3)); /* Cria uma sombra que contorna a personagem */
+            border-radius: 10px; 
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3)); 
+        }
+
+        @media (min-width: 768px) {
+            .whatsapp-flutuante img {
+                height: 130px; /* CARICATURA MAIOR NO PC */
+            }
         }
 
         .whatsapp-flutuante:hover {
@@ -296,15 +324,16 @@
             background-color: var(--cor-fundo-cartao);
             color: var(--cor-texto);
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem 1rem;
             border-top: 1px solid #eae1f0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            margin-bottom: 40px; /* Dá um espaço extra no fim para a caricatura não tampar o texto */
         }
 
         footer strong {
             color: var(--cor-degrade-escuro);
             font-family: var(--fonte-titulo);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             display: block;
             margin-bottom: 0.5rem;
         }
@@ -329,7 +358,7 @@
                     <div class="imagem-produto"><img src="caneca-branca.jpg" alt="Caneca Branca"></div>
                     <div class="info-produto">
                         <h3>Canecas interior e alça branca</h3>
-                        <p>Clássica e minimalista. Ideal para estampar fotos em família, logomarcas ou aquela frase inspiradora para começar o dia.</p>
+                        <p>Clássica e minimalista. Ideal para estampar fotos em família, logomarcas ou aquela frase inspiradora.</p>
                         <span class="preco">R$ 40,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Canecas%20interior%20e%20alça%20branca%20(R$%2040,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -341,7 +370,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca Colorida"></div>
                     <div class="info-produto">
                         <h3>Canecas interior e alça colorida</h3>
-                        <p>Dê um toque de cor e alegria ao seu presente. Combine a cor da alça com a arte escolhida para um acabamento perfeito.</p>
+                        <p>Dê um toque de cor e alegria ao seu presente. Combine a cor da alça com a arte escolhida.</p>
                         <span class="preco">R$ 70,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Canecas%20interior%20e%20alça%20colorida%20(R$%2070,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -353,7 +382,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca Glitter"></div>
                     <div class="info-produto">
                         <h3>Canecas Glitter</h3>
-                        <p>Para quem ama brilho! Um acabamento texturizado e cintilante que transforma uma simples caneca em uma verdadeira joia.</p>
+                        <p>Para quem ama brilho! Um acabamento texturizado e cintilante que transforma uma simples caneca em uma joia.</p>
                         <span class="preco">R$ 75,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Canecas%20Glitter%20(R$%2075,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -365,7 +394,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca Cromada"></div>
                     <div class="info-produto">
                         <h3>Canecas Cromadas</h3>
-                        <p>Sofisticação em formato de caneca. O efeito metalizado reflete elegância, ideal para presentes corporativos ou datas especiais.</p>
+                        <p>Sofisticação em formato de caneca. O efeito metalizado reflete elegância, ideal para presentes.</p>
                         <span class="preco">R$ 75,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Canecas%20Cromadas%20(R$%2075,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -377,7 +406,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca Mágica"></div>
                     <div class="info-produto">
                         <h3>Canecas Mágica</h3>
-                        <p>Surpreenda! A caneca é escura e revela a imagem personalizada apenas quando você coloca um líquido quente dentro.</p>
+                        <p>Surpreenda! A caneca é escura e revela a imagem apenas quando você coloca um líquido quente dentro.</p>
                         <span class="preco">R$ 80,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Canecas%20Mágica%20(R$%2080,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -389,7 +418,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca de Alumínio"></div>
                     <div class="info-produto">
                         <h3>Caneca de Alumínio</h3>
-                        <p>Leve, resistente e super estilosa. Ideal para manter sua bebida na temperatura certa, seja em casa, no trabalho ou em aventuras.</p>
+                        <p>Leve, resistente e super estilosa. Ideal para manter sua bebida na temperatura certa em qualquer lugar.</p>
                         <span class="preco">R$ 50,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Caneca%20de%20Alumínio%20(R$%2050,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -401,7 +430,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca Vidro Jateado"></div>
                     <div class="info-produto">
                         <h3>Caneca de Vidro Jateado 330ml</h3>
-                        <p>Elegância com um toque fosco super charmoso. Perfeita para destacar artes coloridas e presentear com muito bom gosto.</p>
+                        <p>Elegância com um toque fosco super charmoso. Perfeita para destacar artes coloridas.</p>
                         <span class="preco">R$ 50,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Caneca%20de%20Vidro%20Jateado%20330ml%20(R$%2050,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -413,7 +442,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caneca de Chopp"></div>
                     <div class="info-produto">
                         <h3>Caneca de Chopp Vidro 600ml</h3>
-                        <p>Para os momentos de celebração! Robusta e de alta qualidade, ideal para brindar com estilo e a sua marca ou frase favorita.</p>
+                        <p>Para os momentos de celebração! Robusta e de alta qualidade, ideal para brindar com estilo.</p>
                         <span class="preco">R$ 90,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Caneca%20de%20Chopp%20Vidro%20600ml%20(R$%2090,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -431,7 +460,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Agenda 1 dia"></div>
                     <div class="info-produto">
                         <h3>Agenda - Um dia por página</h3>
-                        <p>Espaço de sobra para organizar sua rotina intensa. Capa dura resistente e personalização exclusiva com seu nome.</p>
+                        <p>Espaço de sobra para organizar sua rotina intensa. Capa dura resistente e personalização exclusiva.</p>
                         <span class="preco">R$ 115,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Agenda%20-%20Um%20dia%20por%20página%20(R$%20115,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -443,7 +472,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Agenda 2 dias"></div>
                     <div class="info-produto">
                         <h3>Agenda - Dois dias por página</h3>
-                        <p>Prática e compacta. O formato ideal para quem quer carregar a organização do dia a dia sempre na bolsa.</p>
+                        <p>Prática e compacta. O formato ideal para quem quer carregar a organização sempre na bolsa.</p>
                         <span class="preco">R$ 90,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Agenda%20-%20Dois%20dias%20por%20página%20(R$%2090,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -454,7 +483,7 @@
                 <div class="cartao-produto">
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caderno"></div>
                     <div class="info-produto">
-                        <h3>Cadernos (100 folhas personalizadas)</h3>
+                        <h3>Cadernos (100 folhas)</h3>
                         <p>Estude ou trabalhe com estilo. Folhas internas com sua marca d'água ou detalhes delicados nas bordas.</p>
                         <span class="preco">R$ 90,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Cadernos%20(100%20folhas%20personalizadas)%20(R$%2090,00)" class="btn-comprar" target="_blank">
@@ -467,7 +496,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caderneta Saúde Nova"></div>
                     <div class="info-produto">
                         <h3>Caderneta da Saúde Nova</h3>
-                        <p>O documento do seu bebê muito mais charmoso e protegido. Capa dura e páginas extras para anotações médicas.</p>
+                        <p>O documento do seu bebê muito mais charmoso e protegido. Capa dura e páginas extras para anotações.</p>
                         <span class="preco">R$ 75,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Caderneta%20da%20Saúde%20Nova%20(R$%2075,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -479,7 +508,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Caderneta Saúde Reforma"></div>
                     <div class="info-produto">
                         <h3>Caderneta da Saúde Reforma</h3>
-                        <p>Restaure a caderneta antiga com uma nova capa dura personalizada, garantindo durabilidade para o futuro.</p>
+                        <p>Restaure a caderneta antiga com uma nova capa dura personalizada, garantindo durabilidade.</p>
                         <span class="preco">R$ 65,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Caderneta%20da%20Saúde%20Reforma%20(R$%2065,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -497,7 +526,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Mousepad"></div>
                     <div class="info-produto">
                         <h3>Mousepad</h3>
-                        <p>Deixe o seu escritório com a sua cara. Material confortável e base antiderrapante, estampado com alta qualidade.</p>
+                        <p>Deixe o seu escritório com a sua cara. Material confortável e base antiderrapante de alta qualidade.</p>
                         <span class="preco">R$ 30,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Mousepad%20(R$%2030,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -509,7 +538,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Quebra-cabeça"></div>
                     <div class="info-produto">
                         <h3>Quebra-Cabeça</h3>
-                        <p>Uma forma divertida e lúdica de presentear. Escolha uma foto inesquecível e monte os momentos peça por peça.</p>
+                        <p>Uma forma divertida e lúdica de presentear. Escolha uma foto e monte os momentos peça por peça.</p>
                         <span class="preco">R$ 30,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Quebra-Cabeça%20(R$%2030,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -521,7 +550,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Camisetas"></div>
                     <div class="info-produto">
                         <h3>Camisetas</h3>
-                        <p>Vista a sua ideia! Tecido confortável com estampa durável, perfeita para eventos, empresas ou uso pessoal.</p>
+                        <p>Vista a sua ideia! Tecido confortável com estampa durável, perfeita para eventos ou uso pessoal.</p>
                         <span class="preco">R$ 45,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Camisetas%20(R$%2045,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -533,7 +562,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Bodys Bebê"></div>
                     <div class="info-produto">
                         <h3>Bodys Bebê</h3>
-                        <p>O seu pequeno com muito mais estilo. Estampas divertidas ou fofas em tecido macio que respeita a pele do bebê.</p>
+                        <p>O seu pequeno com muito mais estilo. Estampas fofas em tecido macio que respeita a pele do bebê.</p>
                         <span class="preco">R$ 45,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Bodys%20Bebê%20(R$%2045,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -545,7 +574,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Necessaire"></div>
                     <div class="info-produto">
                         <h3>Necessaire</h3>
-                        <p>Organização com elegância. Guarde suas maquiagens ou itens de higiene em uma bolsinha feita exclusivamente para você.</p>
+                        <p>Organização com elegância. Guarde maquiagens ou itens em uma bolsinha feita para você.</p>
                         <span class="preco">R$ 40,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Necessaire%20(R$%2040,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -557,7 +586,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Chinelos"></div>
                     <div class="info-produto">
                         <h3>Chinelos</h3>
-                        <p>Conforto e estilo para os seus pés. Estampe fotos, frases ou a sua logomarca para usar no dia a dia ou presentear.</p>
+                        <p>Conforto e estilo para os seus pés. Estampe fotos, frases ou a sua logomarca para o dia a dia.</p>
                         <span class="preco">R$ 40,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Chinelos%20(R$%2040,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -569,7 +598,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Squeezes"></div>
                     <div class="info-produto">
                         <h3>Squeezes</h3>
-                        <p>Hidratação com exclusividade. Leve sua garrafinha personalizada para a academia, escola ou trabalho.</p>
+                        <p>Hidratação com exclusividade. Leve sua garrafinha personalizada para a academia ou trabalho.</p>
                         <span class="preco">R$ 60,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Squeezes%20(R$%2060,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -581,7 +610,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Almofadas 30cm"></div>
                     <div class="info-produto">
                         <h3>Almofadas 30cm</h3>
-                        <p>Decore o seu ambiente com carinho. Capa macia e enchimento fofinho, pronta para exibir as suas melhores memórias.</p>
+                        <p>Decore o seu ambiente com carinho. Capa macia, pronta para exibir as suas melhores memórias.</p>
                         <span class="preco">R$ 45,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Almofadas%2030cm%20(R$%2045,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -593,7 +622,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Almofadas 40cm"></div>
                     <div class="info-produto">
                         <h3>Almofadas 40cm</h3>
-                        <p>Ainda mais destaque para a sua sala ou quarto. Tamanho ideal para presentes de Dia das Mães, Namorados e ocasiões especiais.</p>
+                        <p>Ainda mais destaque. Tamanho ideal para presentes de Dia das Mães, Namorados e ocasiões especiais.</p>
                         <span class="preco">R$ 60,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Almofadas%2040cm%20(R$%2060,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
@@ -605,7 +634,7 @@
                     <div class="imagem-produto"><img src="https://via.placeholder.com/500x500/fdfafb/6a4488?text=Foto+Aqui" alt="Almochaveiros"></div>
                     <div class="info-produto">
                         <h3>Almochaveiros</h3>
-                        <p>Uma lembrancinha fofa para levar com você nas chaves ou na mochila. Perfeito para dar de brinde em eventos e festas.</p>
+                        <p>Uma lembrancinha fofa para levar com você nas chaves ou mochila. Perfeito para brindes.</p>
                         <span class="preco">R$ 10,00</span>
                         <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Almochaveiros%20(R$%2010,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
