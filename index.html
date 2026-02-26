@@ -42,7 +42,6 @@
             /* =========================================================
                NOVO FUNDO ESTILO "PAPEL DE PRESENTE CUTE" (MAIS VISÍVEL)
                ========================================================= */
-            /* A transparência (o último número do 'stroke') aumentou de 0.08 para 0.25 */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(212, 166, 255, 0.25)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Caneca Cute --%3E%3Cpath d='M30 40h20v20a10 10 0 0 1-10 10H40a10 10 0 0 1-10-10V40z'/%3E%3Cpath d='M50 45h5a3 3 0 0 1 0 6h-5'/%3E%3Cpath d='M38 55s1 2 2 2 2-2 2-2' opacity='0.8'/%3E%3C!-- Agenda Cute --%3E%3Crect x='80' y='90' width='30' height='40' rx='3' transform='rotate(-10 95 110)'/%3E%3Cpath d='M85 90v40M105 105l-4 4-4-4' transform='rotate(-10 95 110)'/%3E%3C!-- Estrelas e Detalhes --%3E%3Cpath d='M110 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'/%3E%3Ccircle cx='60' cy='110' r='2'/%3E%3Ccircle cx='20' cy='80' r='2'/%3E%3Cpath d='M10 20l5 5M130 80l-5 5M90 20l3 3'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
             background-attachment: fixed; 
@@ -63,10 +62,9 @@
         }
 
         .logo-img {
-            max-width: 200px; 
+            max-width: 230px; /* Aumentei um pouquinho para dar destaque à logo nova */
             height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            /* Sombra e borda removidas para a imagem PNG transparente ficar perfeita */
         }
 
         h1 {
@@ -147,7 +145,6 @@
             overflow: hidden;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             height: 100%;
-            /* Garante que o fundo do cartão cubra a estampa do site atrás dele */
             position: relative;
             z-index: 2;
         }
@@ -373,7 +370,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="logo-personalise.jpg" alt="Logo Loja Personalise" class="logo-img" onerror="this.style.display='none'">
+            <img src="logo-personalise.png" alt="Logo Loja Personalise" class="logo-img" onerror="this.style.display='none'">
         </div>
         <h1 style="display:none;">Loja Personalise</h1>
         <p class="slogan">Sua idéia é feita Aqui!!</p>
@@ -666,7 +663,7 @@
                         <h3>Almochaveiros</h3>
                         <p>Uma lembrancinha fofa para levar com você nas chaves ou mochila. Perfeito para brindes.</p>
                         <span class="preco">R$ 10,00</span>
-                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Almochaveiros%20(R$%2010,00)" class="btn-comprar" target="_blank">
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Almochaveiros%20(R$%2010,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
                         </a>
                     </div>
