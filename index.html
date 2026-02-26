@@ -11,13 +11,13 @@
            PALETA DE CORES - MODO ESCURO ELEGANTE
            ========================================================= */
         :root {
-            --cor-fundo-site: #160d24; /* Roxo super escuro (fundo principal) */
-            --cor-fundo-cartao: #231636; /* Roxo um pouco mais claro para os quadros */
-            --cor-borda: rgba(255, 255, 255, 0.05); /* Borda bem sutil e translúcida */
+            --cor-fundo-site: #160d24; /* Roxo super escuro */
+            --cor-fundo-cartao: #231636; /* Roxo médio para os cartões */
+            --cor-borda: rgba(255, 255, 255, 0.05); 
             
-            --cor-titulo-principal: #ffffff; /* Branco para os títulos saltarem */
-            --cor-texto: #c8b9d6; /* Lilás bem clarinho/cinza para leitura confortável */
-            --cor-destaque: #d4a6ff; /* Lilás vibrante para os preços e linhas */
+            --cor-titulo-principal: #ffffff; 
+            --cor-texto: #c8b9d6; /* Lilás claro para leitura */
+            --cor-destaque: #d4a6ff; /* Lilás vibrante para detalhes */
             
             --cor-whatsapp: #25D366; 
             --cor-whatsapp-hover: #20bd5a;
@@ -37,6 +37,7 @@
             background-color: var(--cor-fundo-site);
             color: var(--cor-texto);
             line-height: 1.6;
+            overflow-x: hidden; /* Evita rolagem horizontal indesejada */
         }
 
         /* Cabeçalho */
@@ -44,6 +45,8 @@
             text-align: center;
             padding: 3rem 1rem 2rem;
             background-color: transparent;
+            position: relative;
+            z-index: 2;
         }
 
         .logo-container {
@@ -54,7 +57,7 @@
             max-width: 200px; 
             height: auto;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra mais forte no escuro */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         h1 {
@@ -74,15 +77,19 @@
             letter-spacing: 1px;
         }
 
-        /* Seções */
+        /* Seções Principais */
         main {
             max-width: 1000px; 
             margin: 0 auto;
             padding: 0 1rem 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
+            position: relative; /* Necessário para os ícones de fundo */
+            padding-top: 2rem; /* Espaço para o ícone do topo não bater no título */
         }
 
         section h2 {
@@ -92,6 +99,7 @@
             font-size: 1.8rem;
             margin-bottom: 2rem;
             position: relative;
+            z-index: 3; /* Título fica na frente de tudo */
         }
 
         section h2::after {
@@ -105,11 +113,36 @@
             opacity: 0.8;
         }
 
-        /* Grade de Produtos: 2 POR LINHA NO CELULAR E NO PC */
+        /* =========================================================
+           ÍCONES CUTE SVG NO FUNDO (As "Tatuagens" do site)
+           ========================================================= */
+        
+        /* Ícone da Canequinha Sorridente */
+        #canecas, #presentes {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='rgba(200,185,214,0.15)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M25 35h50v35a15 15 0 0 1-15 15H40a15 15 0 0 1-15-15V35z'/%3E%3Cpath d='M75 45h10a5 5 0 0 1 0 10h-10'/%3E%3Cpath d='M40 55a2 2 0 1 1-4 0 2 2 0 0 1 4 0M64 55a2 2 0 1 1-4 0 2 2 0 0 1 4 0M45 68s2 3 5 3 5-3 5-3'/%3E%3Cpath d='M35 15s3-5 8 0M55 15s3-5 8 0' opacity='0.6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            /* Posiciona um no topo esquerdo e outro no rodapé direito da seção */
+            background-position: top left, bottom right; 
+            background-size: 180px, 220px; /* Tamanhos diferentes para ficar dinâmico */
+        }
+
+        /* Ícone da Agendinha/Caderno Piscando */
+        #agendas {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='rgba(200,185,214,0.15)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='25' y='15' width='50' height='70' rx='5'/%3E%3Cpath d='M35 15v70M30 25h5M30 35h5M30 45h5M30 55h5M30 65h5M30 75h5'/%3E%3Cpath d='M55 40a2 2 0 1 1-4 0 2 2 0 0 1 4 0'/%3E%3Cpath d='M65 40l3-1 2 2'/%3E%3Cpath d='M55 55s2 3 5 3 5-3 5-3'/%3E%3Cpath d='M68 75l2-2a3 3 0 0 0-4-4l-2 2' opacity='0.7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            /* Posiciona no topo direito e rodapé esquerdo (invertido das canecas) */
+            background-position: top right, bottom left;
+            background-size: 200px, 160px;
+        }
+
+
+        /* Grade de Produtos */
         .grid-produtos {
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
-            gap: 1rem; 
+            gap: 1rem;
+            position: relative;
+            z-index: 3; /* Garante que os produtos fiquem na frente dos ícones de fundo */
         }
 
         @media (min-width: 768px) {
@@ -124,8 +157,8 @@
             flex-direction: column;
             background-color: var(--cor-fundo-cartao);
             border-radius: 15px; 
-            border: 1px solid var(--cor-borda); /* Borda de "vidro" */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Sombra mais densa */
+            border: 1px solid var(--cor-borda);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             height: 100%; 
@@ -137,7 +170,7 @@
 
         .cartao-produto:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5); /* Efeito de flutuar forte */
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
             border-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -147,7 +180,7 @@
             overflow: hidden;
             border-bottom: 1px solid var(--cor-borda);
             cursor: pointer; 
-            background-color: #ffffff; /* Fundo branco atrás da foto caso ela não preencha tudo */
+            background-color: #ffffff;
         }
 
         @media (min-width: 768px) {
@@ -193,7 +226,7 @@
             font-size: 1.2rem; 
             color: var(--cor-destaque);
             margin-bottom: 1rem;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Dá um leve relevo no preço */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         /* Botões dos Produtos */
@@ -218,7 +251,6 @@
             font-size: 1rem;
         }
 
-        /* REGRAS PARA O PC (Restaura os tamanhos maiores em telas de computador) */
         @media (min-width: 768px) {
             .info-produto { padding: 2rem; }
             .info-produto h3 { font-size: 1.3rem; margin-bottom: 1rem; }
@@ -254,7 +286,7 @@
             width: auto;
             display: block;
             border-radius: 10px; 
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6)); /* Sombra mais intensa no escuro */
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
         }
 
         @media (min-width: 768px) {
@@ -268,7 +300,7 @@
         }
 
         /* =========================================================
-           MODAL (FOTO AMPLIADA) - Fundo ainda mais escuro para focar
+           MODAL (FOTO AMPLIADA)
            ========================================================= */
         .modal {
             display: none; 
@@ -329,13 +361,15 @@
 
         /* Rodapé Escuro */
         footer {
-            background-color: #0d0815; /* Fundo do rodapé quase preto */
+            background-color: #0d0815;
             color: var(--cor-texto);
             text-align: center;
             padding: 2rem 1rem;
             border-top: 1px solid var(--cor-borda);
             font-size: 0.85rem;
-            margin-bottom: 40px; 
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
         }
 
         footer strong {
@@ -596,7 +630,7 @@
                         <h3>Chinelos</h3>
                         <p>Conforto e estilo para os seus pés. Estampe fotos, frases ou a sua logomarca para o dia a dia.</p>
                         <span class="preco">R$ 40,00</span>
-                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Chinelos%20(R$%2040,00)" class="btn-comprar" target="_blank">
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Chinelos%20(R$%2040,00)" class="btn-comprar" target="_blank">
                             <i class="fab fa-whatsapp"></i> Pedir agora
                         </a>
                     </div>
