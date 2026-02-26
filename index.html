@@ -11,13 +11,13 @@
            PALETA DE CORES - MODO ESCURO ELEGANTE
            ========================================================= */
         :root {
-            --cor-fundo-site: #160d24; /* Roxo super escuro */
-            --cor-fundo-cartao: #231636; /* Roxo médio para os cartões */
+            --cor-fundo-site: #160d24; 
+            --cor-fundo-cartao: #231636; 
             --cor-borda: rgba(255, 255, 255, 0.05); 
             
             --cor-titulo-principal: #ffffff; 
-            --cor-texto: #c8b9d6; /* Lilás claro para leitura */
-            --cor-destaque: #d4a6ff; /* Lilás vibrante para detalhes */
+            --cor-texto: #c8b9d6; 
+            --cor-destaque: #d4a6ff; 
             
             --cor-whatsapp: #25D366; 
             --cor-whatsapp-hover: #20bd5a;
@@ -39,9 +39,7 @@
             line-height: 1.6;
             overflow-x: hidden;
 
-            /* =========================================================
-               NOVO FUNDO ESTILO "PAPEL DE PRESENTE CUTE" (MAIS VISÍVEL)
-               ========================================================= */
+            /* FUNDO ESTILO "PAPEL DE PRESENTE CUTE" */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(212, 166, 255, 0.25)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Caneca Cute --%3E%3Cpath d='M30 40h20v20a10 10 0 0 1-10 10H40a10 10 0 0 1-10-10V40z'/%3E%3Cpath d='M50 45h5a3 3 0 0 1 0 6h-5'/%3E%3Cpath d='M38 55s1 2 2 2 2-2 2-2' opacity='0.8'/%3E%3C!-- Agenda Cute --%3E%3Crect x='80' y='90' width='30' height='40' rx='3' transform='rotate(-10 95 110)'/%3E%3Cpath d='M85 90v40M105 105l-4 4-4-4' transform='rotate(-10 95 110)'/%3E%3C!-- Estrelas e Detalhes --%3E%3Cpath d='M110 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'/%3E%3Ccircle cx='60' cy='110' r='2'/%3E%3Ccircle cx='20' cy='80' r='2'/%3E%3Cpath d='M10 20l5 5M130 80l-5 5M90 20l3 3'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
             background-attachment: fixed; 
@@ -61,10 +59,18 @@
             margin-bottom: 1rem;
         }
 
+        /* TAMANHO DA LOGO NO CELULAR */
         .logo-img {
-            max-width: 230px; /* Aumentei um pouquinho para dar destaque à logo nova */
+            max-width: 230px; 
             height: auto;
-            /* Sombra e borda removidas para a imagem PNG transparente ficar perfeita */
+            transition: max-width 0.3s ease;
+        }
+
+        /* TAMANHO DA LOGO NO COMPUTADOR */
+        @media (min-width: 768px) {
+            .logo-img {
+                max-width: 350px; /* Aumentei de 230 para 350 apenas no PC */
+            }
         }
 
         h1 {
@@ -251,9 +257,7 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
 
-        /* =========================================================
-           BOTÃO FLUTUANTE DA CARICATURA
-           ========================================================= */
+        /* BOTÃO FLUTUANTE DA CARICATURA */
         .whatsapp-flutuante {
             position: fixed;
             bottom: 15px;
@@ -284,9 +288,7 @@
             transform: scale(1.05) rotate(3deg);
         }
 
-        /* =========================================================
-           MODAL (FOTO AMPLIADA)
-           ========================================================= */
+        /* MODAL (FOTO AMPLIADA) */
         .modal {
             display: none; 
             position: fixed;
