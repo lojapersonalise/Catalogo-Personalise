@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - Loja Personalise</title>
     
-    <!-- FAVICON: Ícone da aba do navegador -->
     <link rel="icon" type="image/png" href="borboletacima.png">
     <link rel="shortcut icon" type="image/png" href="borboletacima.png">
     <link rel="apple-touch-icon" href="borboletacima.png">
@@ -16,7 +15,9 @@
         :root {
             --cor-fundo-site: #784A91; 
             --cor-fundo-cartao: #ffffff;
+            --cor-fundo-imagem: #f3edf7; /* NOVO: Lilás claro para área da foto */
             --cor-borda: rgba(0, 0, 0, 0.05);
+            --cor-divisor: rgba(120, 74, 145, 0.15); /* NOVO: Roxo bem suave para divisor */
             --cor-titulo-principal: #ffffff; 
             --cor-texto: #444444;
             --cor-destaque: #ffffff;
@@ -130,6 +131,7 @@
             }
         }
 
+        /* CARTÃO: continua branco, mas a área interna terá duas cores */
         .cartao-produto {
             display: flex;
             flex-direction: column;
@@ -153,13 +155,14 @@
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
         }
 
+        /* ALTERADO: Fundo lilás claro na área da imagem + divisor sutil */
         .imagem-produto {
             width: 100%;
             height: 200px; 
             overflow: hidden;
-            border-bottom: 1px solid var(--cor-borda);
+            border-bottom: 1px solid var(--cor-divisor);
             cursor: pointer; 
-            background-color: #ffffff;
+            background-color: var(--cor-fundo-imagem); /* LILÁS CLARO */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -181,12 +184,14 @@
             transform: scale(1.05); 
         }
 
+        /* ÁREA DE TEXTO: continua branca para contraste */
         .info-produto {
             padding: 0.8rem 0.6rem; 
             display: flex;
             flex-direction: column;
             flex: 1;
             text-align: center;
+            background-color: #ffffff; /* BRANCO PURO */
         }
 
         .info-produto h3 {
