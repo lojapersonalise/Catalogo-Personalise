@@ -15,15 +15,17 @@
         :root {
             --cor-fundo-site: #784A91; 
             --cor-fundo-cartao: #ffffff;
-            --cor-fundo-imagem: #f3edf7; /* NOVO: Lilás claro para área da foto */
+            --cor-fundo-imagem: #f3edf7;
             --cor-borda: rgba(0, 0, 0, 0.05);
-            --cor-divisor: rgba(120, 74, 145, 0.15); /* NOVO: Roxo bem suave para divisor */
+            --cor-divisor: rgba(120, 74, 145, 0.15);
             --cor-titulo-principal: #ffffff; 
             --cor-texto: #444444;
             --cor-destaque: #ffffff;
             --cor-principal-loja: #160d24;
             --cor-whatsapp: #25D366; 
             --cor-whatsapp-hover: #20bd5a;
+            --cor-instagram: #784A91;
+            --cor-instagram-hover: #5e3a72;
             --fonte-titulo: 'Georgia', serif; 
             --fonte-texto: 'Helvetica Neue', Arial, sans-serif;
         }
@@ -131,7 +133,6 @@
             }
         }
 
-        /* CARTÃO: continua branco, mas a área interna terá duas cores */
         .cartao-produto {
             display: flex;
             flex-direction: column;
@@ -155,14 +156,13 @@
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
         }
 
-        /* ALTERADO: Fundo lilás claro na área da imagem + divisor sutil */
         .imagem-produto {
             width: 100%;
             height: 200px; 
             overflow: hidden;
             border-bottom: 1px solid var(--cor-divisor);
             cursor: pointer; 
-            background-color: var(--cor-fundo-imagem); /* LILÁS CLARO */
+            background-color: var(--cor-fundo-imagem);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -184,14 +184,13 @@
             transform: scale(1.05); 
         }
 
-        /* ÁREA DE TEXTO: continua branca para contraste */
         .info-produto {
             padding: 0.8rem 0.6rem; 
             display: flex;
             flex-direction: column;
             flex: 1;
             text-align: center;
-            background-color: #ffffff; /* BRANCO PURO */
+            background-color: #ffffff;
         }
 
         .info-produto h3 {
@@ -214,6 +213,12 @@
             font-size: 1.15rem; 
             color: var(--cor-principal-loja);
             margin-bottom: 0.8rem;
+        }
+
+        .preco.orcamento {
+            font-size: 0.95rem;
+            color: #784A91;
+            font-style: italic;
         }
 
         .btn-comprar {
@@ -242,6 +247,7 @@
             .info-produto h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
             .info-produto p { font-size: 0.9rem; margin-bottom: 1.2rem; line-height: 1.5; }
             .preco { font-size: 1.4rem; margin-bottom: 1.2rem; }
+            .preco.orcamento { font-size: 1.1rem; }
             .btn-comprar { padding: 0.85rem 1.5rem; font-size: 0.95rem; border-radius: 50px; gap: 10px; }
             .btn-comprar i { font-size: 1.1rem; }
         }
@@ -282,6 +288,7 @@
             transform: scale(1.05) rotate(3deg);
         }
 
+        /* MODAL */
         .modal {
             display: none; 
             position: fixed;
@@ -317,11 +324,64 @@
 
         .modal-content img {
             width: 100%;
-            max-height: 70vh; 
+            max-height: 60vh; 
             object-fit: contain;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             margin-bottom: 20px;
+        }
+
+        /* NOVO: container dos botões do modal lado a lado */
+        .modal-botoes {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .modal-botoes a {
+            flex: 1;
+            min-width: 140px;
+            max-width: 240px;
+        }
+
+        /* NOVO: Botão "Ver mais fotos" (Instagram) */
+        .btn-instagram {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #784A91 0%, #a063c4 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.55rem 0.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            gap: 5px;
+            box-shadow: 0 4px 15px rgba(120, 74, 145, 0.3);
+            width: 100%;
+        }
+
+        .btn-instagram i {
+            font-size: 1rem;
+        }
+
+        .btn-instagram:hover {
+            background: linear-gradient(135deg, #5e3a72 0%, #784A91 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(120, 74, 145, 0.5);
+        }
+
+        @media (min-width: 768px) {
+            .btn-instagram {
+                padding: 0.85rem 1.5rem;
+                font-size: 0.95rem;
+                border-radius: 50px;
+                gap: 10px;
+            }
+            .btn-instagram i { font-size: 1.1rem; }
         }
 
         .fechar-modal {
@@ -333,6 +393,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: color 0.3s;
+            z-index: 2001;
         }
 
         .fechar-modal:hover {
@@ -396,11 +457,12 @@
     </header>
 
     <main>
+        <!-- ============ CANECAS ============ -->
         <section id="canecas">
             <h2>Canecas</h2>
             <div class="grid-produtos">
                 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="caneca-branca.jpg" alt="Caneca Branca"></div>
                     <div class="info-produto">
                         <h3>Canecas interior e alça branca</h3>
@@ -412,7 +474,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz358blk5x/?img_index=3">
                     <div class="imagem-produto"><img src="canecacolorida.jpg" alt="Caneca Colorida"></div>
                     <div class="info-produto">
                         <h3>Canecas interior e alça colorida</h3>
@@ -424,7 +486,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DX0H2mDjQr4/?img_index=1">
                     <div class="imagem-produto"><img src="gliter.jpg" alt="Caneca Glitter"></div>
                     <div class="info-produto">
                         <h3>Canecas Glitter</h3>
@@ -436,7 +498,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DX0D1j6jW3b/?img_index=1">
                     <div class="imagem-produto"><img src="cromada.jpg" alt="Caneca Cromada"></div>
                     <div class="info-produto">
                         <h3>Canecas Cromadas</h3>
@@ -448,7 +510,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DX0Qeg9jQin/?img_index=1">
                     <div class="imagem-produto"><img src="magica.jpg" alt="Caneca Mágica"></div>
                     <div class="info-produto">
                         <h3>Canecas Mágica</h3>
@@ -460,7 +522,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="aluminio.jpg" alt="Caneca de Alumínio"></div>
                     <div class="info-produto">
                         <h3>Caneca de Alumínio</h3>
@@ -472,7 +534,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="vidrojateado.jpg" alt="Caneca Vidro Jateado"></div>
                     <div class="info-produto">
                         <h3>Caneca de Vidro Jateado 330ml</h3>
@@ -484,7 +546,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="chopp.jpg" alt="Caneca de Chopp"></div>
                     <div class="info-produto">
                         <h3>Caneca de Chopp Vidro 600ml</h3>
@@ -495,14 +557,29 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- 🆕 XÍCARAS -->
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
+                    <div class="imagem-produto"><img src="xicaras.jpg" alt="Xícaras Personalizadas"></div>
+                    <div class="info-produto">
+                        <h3>Xícaras</h3>
+                        <p>O charme de um café especial em uma xícara só sua. Perfeita para presentear ou colecionar com bom gosto.</p>
+                        <span class="preco">R$ 50,00</span>
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Xícaras%20(R$%2050,00)" class="btn-comprar" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir agora
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
+        <!-- ============ AGENDAS E CADERNOS ============ -->
         <section id="agendas">
             <h2>Agendas e Cadernos</h2>
             <div class="grid-produtos">
                 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz46eJFrNG/?img_index=3">
                     <div class="imagem-produto"><img src="agenda1por.jpg" alt="Agenda 1 dia"></div>
                     <div class="info-produto">
                         <h3>Agenda - Um dia por página</h3>
@@ -514,7 +591,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz46eJFrNG/?img_index=3">
                     <div class="imagem-produto"><img src="agenda2por.jpg" alt="Agenda 2 dias"></div>
                     <div class="info-produto">
                         <h3>Agenda - Dois dias por página</h3>
@@ -526,7 +603,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="caderno.jpg" alt="Caderno"></div>
                     <div class="info-produto">
                         <h3>Cadernos (100 folhas)</h3>
@@ -538,7 +615,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz6gY2licL/?img_index=3>
                     <div class="imagem-produto"><img src="cadernetanova.jpg" alt="Caderneta Saúde Nova"></div>
                     <div class="info-produto">
                         <h3>Caderneta da Saúde Nova</h3>
@@ -550,7 +627,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz6gY2licL/?img_index=2">
                     <div class="imagem-produto"><img src="cadernetareforma.jpg" alt="Caderneta Saúde Reforma"></div>
                     <div class="info-produto">
                         <h3>Caderneta da Saúde Reforma</h3>
@@ -561,14 +638,29 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- 🆕 PAPELARIA -->
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz8e1fFkDB/?img_index=2">
+                    <div class="imagem-produto"><img src="papelaria.jpg" alt="Papelaria Personalizada"></div>
+                    <div class="info-produto">
+                        <h3>Papelaria Personalizada</h3>
+                        <p>Topos, adesivos e tags são orçados individualmente por projeto. Cada peça é única e personalizada de acordo com sua necessidade.</p>
+                        <span class="preco orcamento">Orçamento personalizado</span>
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20de%20papelaria%20personalizada%20(topos,%20adesivos,%20tags)." class="btn-comprar" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Solicitar orçamento
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
+        <!-- ============ PRESENTES ESPECIAIS ============ -->
         <section id="presentes">
             <h2>Presentes Especiais</h2>
             <div class="grid-produtos">
                 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="mousepad.jpg" alt="Mousepad"></div>
                     <div class="info-produto">
                         <h3>Mousepad</h3>
@@ -580,7 +672,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="quebracabeca.jpg" alt="Quebra-cabeça"></div>
                     <div class="info-produto">
                         <h3>Quebra-Cabeça</h3>
@@ -592,7 +684,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="camiseta.jpg" alt="Camisetas"></div>
                     <div class="info-produto">
                         <h3>Camisetas</h3>
@@ -604,7 +696,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="body.jpg" alt="Bodys Bebê"></div>
                     <div class="info-produto">
                         <h3>Bodys Bebê</h3>
@@ -616,7 +708,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="necessaire.jpg" alt="Necessaire"></div>
                     <div class="info-produto">
                         <h3>Necessaire</h3>
@@ -628,7 +720,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz57UwlrPS/?img_index=3">
                     <div class="imagem-produto"><img src="chinelo.jpg" alt="Chinelos"></div>
                     <div class="info-produto">
                         <h3>Chinelos</h3>
@@ -640,7 +732,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz9NvglmVm/?img_index=1">
                     <div class="imagem-produto"><img src="garrafa.jpg" alt="Squeezes"></div>
                     <div class="info-produto">
                         <h3>Squeezes</h3>
@@ -652,7 +744,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXzz0QQlq5p/?img_index=4">
                     <div class="imagem-produto"><img src="almofada30.jpg" alt="Almofadas 30cm"></div>
                     <div class="info-produto">
                         <h3>Almofadas 30cm</h3>
@@ -664,7 +756,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXzz0QQlq5p/?img_index=3">
                     <div class="imagem-produto"><img src="almofada40.jpg" alt="Almofadas 40cm"></div>
                     <div class="info-produto">
                         <h3>Almofadas 40cm</h3>
@@ -676,77 +768,10 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto">
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz1qZQlvpk/?img_index=3">
                     <div class="imagem-produto"><img src="almochaveiro.jpg" alt="Almochaveiros"></div>
                     <div class="info-produto">
                         <h3>Almochaveiros</h3>
                         <p>Uma lembrancinha fofa para levar com você nas chaves ou mochila. Perfeito para brindes.</p>
                         <span class="preco">R$ 10,00</span>
-                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Almochaveiros%20(R$%2010,00)" class="btn-comprar" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir agora
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <strong>Loja Personalise</strong>
-        <p>Rua X Qd 24 Lt 12 Divino Espirito Santo | CEP: 75831020</p>
-        
-        <a href="https://www.instagram.com/personalise_/" target="_blank" class="link-instagram">
-            <i class="fab fa-instagram"></i> @personalise_
-        </a>
-    </footer>
-
-    <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20os%20produtos%20da%20Loja%20Personalise." class="whatsapp-flutuante" target="_blank" title="Fale comigo no WhatsApp">
-        <img src="caricatura.png" alt="Fale comigo no WhatsApp">
-    </a>
-
-    <div id="imageModal" class="modal">
-        <span class="fechar-modal" onclick="fecharModal()">&times;</span>
-        <div class="modal-content">
-            <img id="imgModal" src="" alt="Imagem Ampliada">
-            <a id="btnModalWhatsapp" href="" class="btn-comprar" target="_blank">
-                <i class="fab fa-whatsapp"></i> Pedir agora
-            </a>
-        </div>
-    </div>
-
-    <script>
-        function abrirModal(imgSrc, whatsappLink) {
-            document.getElementById('imgModal').src = imgSrc;
-            document.getElementById('btnModalWhatsapp').href = whatsappLink;
-            document.getElementById('imageModal').classList.add('ativo');
-        }
-
-        function fecharModal() {
-            document.getElementById('imageModal').classList.remove('ativo');
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('imageModal');
-            if (event.target === modal) {
-                fecharModal();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const produtos = document.querySelectorAll('.cartao-produto');
-            
-            produtos.forEach(produto => {
-                const imgElement = produto.querySelector('.imagem-produto img');
-                const btnElement = produto.querySelector('.btn-comprar');
-                
-                if (imgElement && btnElement) {
-                    imgElement.addEventListener('click', function() {
-                        abrirModal(imgElement.src, btnElement.href);
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        <a href="https://wa
