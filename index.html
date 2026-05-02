@@ -30,11 +30,7 @@
             --fonte-texto: 'Helvetica Neue', Arial, sans-serif;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: var(--fonte-texto);
@@ -48,199 +44,38 @@
             background-size: 150px 150px; 
         }
 
-        header {
-            text-align: center;
-            padding: 1.5rem 1rem 0.5rem;
-            background-color: transparent;
-            position: relative;
-            z-index: 2;
-        }
+        header { text-align: center; padding: 1.5rem 1rem 0.5rem; background-color: transparent; position: relative; z-index: 2; }
+        .logo-container { margin-bottom: 0; }
+        .logo-img { max-width: 280px; height: auto; transition: max-width 0.3s ease; display: block; margin: 0 auto; }
+        @media (min-width: 768px) { .logo-img { max-width: 450px; } }
 
-        .logo-container {
-            margin-bottom: 0;
-        }
+        h1 { font-family: var(--fonte-titulo); color: var(--cor-titulo-principal); margin-top: 1rem; margin-bottom: 0.5rem; font-size: 2.2rem; letter-spacing: 1px; }
 
-        .logo-img {
-            max-width: 280px; 
-            height: auto;
-            transition: max-width 0.3s ease;
-            display: block;
-            margin: 0 auto;
-        }
+        main { max-width: 1000px; margin: 0 auto; padding: 0 1rem 2rem; position: relative; z-index: 2; }
+        section { margin-bottom: 3rem; margin-top: 0; position: relative; }
+        section h2 { font-family: var(--fonte-titulo); color: var(--cor-titulo-principal); text-align: center; font-size: 1.8rem; margin-bottom: 1.5rem; margin-top: 0; position: relative; z-index: 3; }
+        section h2::after { content: ''; display: block; width: 50px; height: 3px; background-color: var(--cor-destaque); margin: 10px auto 0; border-radius: 5px; opacity: 0.8; }
 
-        @media (min-width: 768px) {
-            .logo-img {
-                max-width: 450px; 
-            }
-        }
+        .grid-produtos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; position: relative; z-index: 3; }
+        @media (min-width: 768px) { .grid-produtos { gap: 2rem; } }
 
-        h1 {
-            font-family: var(--fonte-titulo);
-            color: var(--cor-titulo-principal);
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            font-size: 2.2rem;
-            letter-spacing: 1px;
-        }
+        .cartao-produto { display: flex; flex-direction: column; background-color: var(--cor-fundo-cartao); border-radius: 15px; border: 1px solid var(--cor-borda); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease; height: 100%; position: relative; z-index: 2; }
+        @media (min-width: 768px) { .cartao-produto { border-radius: 25px; } }
+        .cartao-produto:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); }
 
-        main {
-            max-width: 1000px; 
-            margin: 0 auto;
-            padding: 0 1rem 2rem;
-            position: relative;
-            z-index: 2;
-        }
+        .imagem-produto { width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid var(--cor-divisor); cursor: pointer; background-color: var(--cor-fundo-imagem); display: flex; align-items: center; justify-content: center; padding: 8px; }
+        @media (min-width: 768px) { .imagem-produto { height: 240px; padding: 12px; } }
+        .imagem-produto img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease; }
+        .cartao-produto:hover .imagem-produto img { transform: scale(1.05); }
 
-        section {
-            margin-bottom: 3rem;
-            margin-top: 0;
-            position: relative;
-        }
+        .info-produto { padding: 0.8rem 0.6rem; display: flex; flex-direction: column; flex: 1; text-align: center; background-color: #ffffff; }
+        .info-produto h3 { font-family: var(--fonte-titulo); font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--cor-principal-loja); }
+        .info-produto p { font-size: 0.78rem; color: var(--cor-texto); margin-bottom: 0.8rem; line-height: 1.4; flex-grow: 1; }
+        .preco { font-weight: bold; font-size: 1.15rem; color: var(--cor-principal-loja); margin-bottom: 0.8rem; }
+        .preco.orcamento { font-size: 0.95rem; color: #784A91; font-style: italic; }
 
-        section h2 {
-            font-family: var(--fonte-titulo);
-            color: var(--cor-titulo-principal);
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            margin-top: 0;
-            position: relative;
-            z-index: 3;
-        }
-
-        section h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: var(--cor-destaque);
-            margin: 10px auto 0;
-            border-radius: 5px;
-            opacity: 0.8;
-        }
-
-        .grid-produtos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 1rem;
-            position: relative;
-            z-index: 3;
-        }
-
-        @media (min-width: 768px) {
-            .grid-produtos {
-                gap: 2rem; 
-            }
-        }
-
-        .cartao-produto {
-            display: flex;
-            flex-direction: column;
-            background-color: var(--cor-fundo-cartao);
-            border-radius: 15px; 
-            border: 1px solid var(--cor-borda);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            height: 100%;
-            position: relative;
-            z-index: 2;
-        }
-
-        @media (min-width: 768px) {
-            .cartao-produto { border-radius: 25px; }
-        }
-
-        .cartao-produto:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .imagem-produto {
-            width: 100%;
-            height: 200px; 
-            overflow: hidden;
-            border-bottom: 1px solid var(--cor-divisor);
-            cursor: pointer; 
-            background-color: var(--cor-fundo-imagem);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-        }
-
-        @media (min-width: 768px) {
-            .imagem-produto { height: 240px; padding: 12px; } 
-        }
-
-        .imagem-produto img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-
-        .cartao-produto:hover .imagem-produto img {
-            transform: scale(1.05); 
-        }
-
-        .info-produto {
-            padding: 0.8rem 0.6rem; 
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            text-align: center;
-            background-color: #ffffff;
-        }
-
-        .info-produto h3 {
-            font-family: var(--fonte-titulo);
-            font-size: 0.95rem; 
-            margin-bottom: 0.4rem;
-            color: var(--cor-principal-loja);
-        }
-
-        .info-produto p {
-            font-size: 0.78rem; 
-            color: var(--cor-texto);
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-            flex-grow: 1; 
-        }
-
-        .preco {
-            font-weight: bold;
-            font-size: 1.15rem; 
-            color: var(--cor-principal-loja);
-            margin-bottom: 0.8rem;
-        }
-
-        .preco.orcamento {
-            font-size: 0.95rem;
-            color: #784A91;
-            font-style: italic;
-        }
-
-        .btn-comprar {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--cor-whatsapp);
-            color: #fff;
-            text-decoration: none;
-            padding: 0.55rem 0.5rem; 
-            border-radius: 25px; 
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            gap: 5px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-            width: 100%; 
-        }
-
-        .btn-comprar i {
-            font-size: 1rem;
-        }
+        .btn-comprar { display: inline-flex; align-items: center; justify-content: center; background-color: var(--cor-whatsapp); color: #fff; text-decoration: none; padding: 0.55rem 0.5rem; border-radius: 25px; font-weight: bold; font-size: 0.8rem; transition: all 0.3s; gap: 5px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); width: 100%; }
+        .btn-comprar i { font-size: 1rem; }
 
         @media (min-width: 768px) {
             .info-produto { padding: 1.5rem; }
@@ -252,199 +87,36 @@
             .btn-comprar i { font-size: 1.1rem; }
         }
 
-        .btn-comprar:hover {
-            background-color: var(--cor-whatsapp-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
+        .btn-comprar:hover { background-color: var(--cor-whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
 
-        .whatsapp-flutuante {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .whatsapp-flutuante img {
-            height: 80px; 
-            width: auto;
-            display: block;
-            border-radius: 10px; 
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
-        }
-
-        @media (min-width: 768px) {
-            .whatsapp-flutuante img {
-                height: 130px; 
-            }
-        }
-
-        .whatsapp-flutuante:hover {
-            transform: scale(1.05) rotate(3deg);
-        }
+        .whatsapp-flutuante { position: fixed; bottom: 15px; right: 15px; z-index: 1000; transition: transform 0.3s ease; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+        .whatsapp-flutuante img { height: 80px; width: auto; display: block; border-radius: 10px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3)); }
+        @media (min-width: 768px) { .whatsapp-flutuante img { height: 130px; } }
+        .whatsapp-flutuante:hover { transform: scale(1.05) rotate(3deg); }
 
         /* MODAL */
-        .modal {
-            display: none; 
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 1rem;
-        }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); align-items: center; justify-content: center; flex-direction: column; padding: 1rem; }
+        .modal.ativo { display: flex; animation: aparecer 0.3s ease; }
+        @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { display: flex; flex-direction: column; align-items: center; max-width: 90%; width: 500px; }
+        .modal-content img { width: 100%; max-height: 60vh; object-fit: contain; border-radius: 15px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); margin-bottom: 20px; }
 
-        .modal.ativo {
-            display: flex;
-            animation: aparecer 0.3s ease;
-        }
+        .modal-botoes { display: flex; gap: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
+        .modal-botoes a { flex: 1; min-width: 140px; max-width: 240px; }
 
-        @keyframes aparecer {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        .btn-instagram { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #784A91 0%, #a063c4 100%); color: #fff; text-decoration: none; padding: 0.55rem 0.5rem; border-radius: 25px; font-weight: bold; font-size: 0.8rem; transition: all 0.3s; gap: 5px; box-shadow: 0 4px 15px rgba(120, 74, 145, 0.3); width: 100%; }
+        .btn-instagram i { font-size: 1rem; }
+        .btn-instagram:hover { background: linear-gradient(135deg, #5e3a72 0%, #784A91 100%); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(120, 74, 145, 0.5); }
+        @media (min-width: 768px) { .btn-instagram { padding: 0.85rem 1.5rem; font-size: 0.95rem; border-radius: 50px; gap: 10px; } .btn-instagram i { font-size: 1.1rem; } }
 
-        .modal-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 90%;
-            width: 500px;
-        }
+        .fechar-modal { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.3s; z-index: 2001; }
+        .fechar-modal:hover { color: #ffffff; opacity: 0.7; }
 
-        .modal-content img {
-            width: 100%;
-            max-height: 60vh; 
-            object-fit: contain;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-        }
-
-        /* NOVO: container dos botões do modal lado a lado */
-        .modal-botoes {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .modal-botoes a {
-            flex: 1;
-            min-width: 140px;
-            max-width: 240px;
-        }
-
-        /* NOVO: Botão "Ver mais fotos" (Instagram) */
-        .btn-instagram {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #784A91 0%, #a063c4 100%);
-            color: #fff;
-            text-decoration: none;
-            padding: 0.55rem 0.5rem;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            gap: 5px;
-            box-shadow: 0 4px 15px rgba(120, 74, 145, 0.3);
-            width: 100%;
-        }
-
-        .btn-instagram i {
-            font-size: 1rem;
-        }
-
-        .btn-instagram:hover {
-            background: linear-gradient(135deg, #5e3a72 0%, #784A91 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(120, 74, 145, 0.5);
-        }
-
-        @media (min-width: 768px) {
-            .btn-instagram {
-                padding: 0.85rem 1.5rem;
-                font-size: 0.95rem;
-                border-radius: 50px;
-                gap: 10px;
-            }
-            .btn-instagram i { font-size: 1.1rem; }
-        }
-
-        .fechar-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-            z-index: 2001;
-        }
-
-        .fechar-modal:hover {
-            color: #ffffff;
-            opacity: 0.7;
-        }
-
-        footer {
-            background-color: rgba(22, 13, 36, 0.95);
-            color: #ffffff;
-            text-align: center;
-            padding: 2.5rem 1rem;
-            border-top: 1px solid var(--cor-borda);
-            font-size: 0.9rem;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        footer strong {
-            color: #ffffff;
-            font-family: var(--fonte-titulo);
-            font-size: 1.2rem;
-            display: block;
-        }
-        
-        footer p {
-            color: #eaeaea;
-        }
-        
-        .link-instagram {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: #d4a6ff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 5px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .link-instagram:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
+        footer { background-color: rgba(22, 13, 36, 0.95); color: #ffffff; text-align: center; padding: 2.5rem 1rem; border-top: 1px solid var(--cor-borda); font-size: 0.9rem; margin-bottom: 40px; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        footer strong { color: #ffffff; font-family: var(--fonte-titulo); font-size: 1.2rem; display: block; }
+        footer p { color: #eaeaea; }
+        .link-instagram { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #d4a6ff; text-decoration: none; font-size: 1.1rem; font-weight: bold; margin-top: 5px; transition: color 0.3s ease, transform 0.3s ease; }
+        .link-instagram:hover { color: #ffffff; transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -461,7 +133,7 @@
         <section id="canecas">
             <h2>Canecas</h2>
             <div class="grid-produtos">
-                
+
                 <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="caneca-branca.jpg" alt="Caneca Branca"></div>
                     <div class="info-produto">
@@ -558,7 +230,6 @@
                     </div>
                 </div>
 
-                <!-- 🆕 XÍCARAS -->
                 <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="xicaras.jpg" alt="Xícaras Personalizadas"></div>
                     <div class="info-produto">
@@ -578,7 +249,7 @@
         <section id="agendas">
             <h2>Agendas e Cadernos</h2>
             <div class="grid-produtos">
-                
+
                 <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz46eJFrNG/?img_index=3">
                     <div class="imagem-produto"><img src="agenda1por.jpg" alt="Agenda 1 dia"></div>
                     <div class="info-produto">
@@ -615,7 +286,7 @@
                     </div>
                 </div>
 
-                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz6gY2licL/?img_index=3>
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz6gY2licL/?img_index=3">
                     <div class="imagem-produto"><img src="cadernetanova.jpg" alt="Caderneta Saúde Nova"></div>
                     <div class="info-produto">
                         <h3>Caderneta da Saúde Nova</h3>
@@ -639,7 +310,6 @@
                     </div>
                 </div>
 
-                <!-- 🆕 PAPELARIA -->
                 <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz8e1fFkDB/?img_index=2">
                     <div class="imagem-produto"><img src="papelaria.jpg" alt="Papelaria Personalizada"></div>
                     <div class="info-produto">
@@ -654,12 +324,11 @@
 
             </div>
         </section>
-
         <!-- ============ PRESENTES ESPECIAIS ============ -->
         <section id="presentes">
             <h2>Presentes Especiais</h2>
             <div class="grid-produtos">
-                
+
                 <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
                     <div class="imagem-produto"><img src="mousepad.jpg" alt="Mousepad"></div>
                     <div class="info-produto">
@@ -774,4 +443,119 @@
                         <h3>Almochaveiros</h3>
                         <p>Uma lembrancinha fofa para levar com você nas chaves ou mochila. Perfeito para brindes.</p>
                         <span class="preco">R$ 10,00</span>
-                        <a href="https://wa
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Almochaveiros%20(R$%2010,00)" class="btn-comprar" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir agora
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 🆕 TOALHAS -->
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/p/DXz5gBuFmNN/?img_index=1">
+                    <div class="imagem-produto"><img src="toalhas.jpg" alt="Toalhas"></div>
+                    <div class="info-produto">
+                        <h3>Toalhas</h3>
+                        <p>Maciez e personalização para o seu dia a dia. Ideal para presentear ou usar em casa com muito estilo.</p>
+                        <span class="preco">R$ 20,00</span>
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Toalhas%20(R$%2020,00)" class="btn-comprar" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir agora
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 🆕 ALMOFADA DE PIPOCA -->
+                <div class="cartao-produto" data-instagram="https://www.instagram.com/personalise_/">
+                    <div class="imagem-produto"><img src="almofadapipoca.jpg" alt="Almofada de Pipoca"></div>
+                    <div class="info-produto">
+                        <h3>Almofada de Pipoca</h3>
+                        <p>Diversão e conforto na hora do cinema em casa! Almofada criativa com espaço para o seu balde de pipoca.</p>
+                        <span class="preco">R$ 90,00</span>
+                        <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido.%20Tenho%20interesse%20no%20produto:%20Almofada%20de%20Pipoca%20(R$%2090,00)" class="btn-comprar" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir agora
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ MODAL ============ -->
+    <div class="modal" id="modalImagem">
+        <span class="fechar-modal" id="fecharModal">&times;</span>
+        <div class="modal-content">
+            <img src="" alt="Imagem ampliada" id="imagemModal">
+            <div class="modal-botoes">
+                <a href="#" class="btn-comprar" id="btnPedirModal" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Pedir agora
+                </a>
+                <a href="#" class="btn-instagram" id="btnInstagramModal" target="_blank">
+                    <i class="fab fa-instagram"></i> Ver mais fotos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ WHATSAPP FLUTUANTE ============ -->
+    <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20produtos." class="whatsapp-flutuante" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <img src="botaowhatsapp.png" alt="Fale no WhatsApp" onerror="this.outerHTML='<i class=&quot;fab fa-whatsapp&quot; style=&quot;font-size:60px;color:#25D366;background:white;border-radius:50%;padding:10px;&quot;></i>'">
+    </a>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <strong>Loja Personalise</strong>
+        <p>Transformando momentos em lembranças únicas. ✨</p>
+        <p>📍 Mineiros - GO | 📱 (64) 98111-1528</p>
+        <a href="https://www.instagram.com/personalise_/" class="link-instagram" target="_blank">
+            <i class="fab fa-instagram"></i> @personalise_
+        </a>
+    </footer>
+
+    <!-- ============ JAVASCRIPT ============ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('modalImagem');
+            const imagemModal = document.getElementById('imagemModal');
+            const fecharModal = document.getElementById('fecharModal');
+            const btnPedirModal = document.getElementById('btnPedirModal');
+            const btnInstagramModal = document.getElementById('btnInstagramModal');
+            const cartoes = document.querySelectorAll('.cartao-produto');
+
+            cartoes.forEach(cartao => {
+                const imagemContainer = cartao.querySelector('.imagem-produto');
+                const imagem = cartao.querySelector('.imagem-produto img');
+                const linkWhats = cartao.querySelector('.btn-comprar').href;
+                const linkInsta = cartao.getAttribute('data-instagram');
+
+                imagemContainer.addEventListener('click', function() {
+                    imagemModal.src = imagem.src;
+                    imagemModal.alt = imagem.alt;
+                    btnPedirModal.href = linkWhats;
+                    btnInstagramModal.href = linkInsta;
+                    modal.classList.add('ativo');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function fechar() {
+                modal.classList.remove('ativo');
+                document.body.style.overflow = 'auto';
+            }
+
+            fecharModal.addEventListener('click', fechar);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    fechar();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('ativo')) {
+                    fechar();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
