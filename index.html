@@ -23,8 +23,8 @@
   --cor-texto:#444444;
   --cor-destaque:#ffffff;
   --cor-principal-loja:#160d24;
-  --cor-whatsapp:#25D366;
-  --cor-whatsapp-hover:#20bd5a;
+  --cor-whatsapp:#087a3f;
+  --cor-whatsapp-hover:#066534;
   --cor-instagram:#784A91;
   --cor-instagram-hover:#5e3a72;
   --fonte-titulo:'Georgia',serif;
@@ -339,6 +339,126 @@ footer p{color:#eaeaea;}
   color:#fff;text-align:center;font-size:.9rem;padding:20px;grid-column:1/-1;opacity:.8;
 }
 
+/* REFINAMENTOS VISUAIS E RESPONSIVOS */
+body{
+  min-width:0;
+  background-color:#704287;
+  background-image:
+    linear-gradient(180deg,rgba(22,13,36,.18) 0,transparent 320px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(22,13,36,0.15)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30 40h20v20a10 10 0 0 1-10 10H40a10 10 0 0 1-10-10V40z'/%3E%3Cpath d='M50 45h5a3 3 0 0 1 0 6h-5'/%3E%3Cpath d='M38 55s1 2 2 2 2-2 2-2' opacity='0.8'/%3E%3Crect x='80' y='90' width='30' height='40' rx='3' transform='rotate(-10 95 110)'/%3E%3Cpath d='M85 90v40M105 105l-4 4-4-4' transform='rotate(-10 95 110)'/%3E%3Cpath d='M110 30l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'/%3E%3Ccircle cx='60' cy='110' r='2'/%3E%3Ccircle cx='20' cy='80' r='2'/%3E%3Cpath d='M10 20l5 5M130 80l-5 5M90 20l3 3'/%3E%3C/g%3E%3C/svg%3E");
+}
+header{
+  padding:clamp(1rem,3vw,1.75rem) clamp(.75rem,3vw,2rem) 1rem;
+  background:linear-gradient(180deg,rgba(22,13,36,.92),rgba(22,13,36,.78));
+  border-bottom:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 30px rgba(22,13,36,.18);
+}
+.logo-container{margin-bottom:.75rem;}
+.logo-img{width:min(78vw,320px);max-width:100%;}
+.search-wrap{max-width:520px;margin:.4rem auto 0;}
+.search-wrap input{
+  min-height:48px;
+  padding:12px 18px 12px 44px;
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  color:#24172d;
+}
+.search-wrap input::placeholder{color:#665c6c;opacity:1;}
+.search-wrap i{left:17px;color:#665c6c;}
+nav.cat-nav{
+  justify-content:flex-start;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  max-width:100%;
+  margin:.85rem auto 0;
+  padding:2px 0 5px;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+nav.cat-nav::-webkit-scrollbar{display:none;}
+nav.cat-nav a{
+  flex:0 0 auto;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.1);
+}
+main{width:100%;max-width:1240px;padding:0 clamp(.75rem,3vw,2rem) clamp(2.5rem,6vw,5rem);}
+section{margin:clamp(2.25rem,6vw,4.5rem) 0 0;}
+section h2{
+  font-size:clamp(1.55rem,4vw,2.15rem);
+  line-height:1.2;
+  margin-bottom:clamp(1.25rem,3vw,2rem);
+  letter-spacing:-.02em;
+  text-shadow:0 2px 12px rgba(22,13,36,.22);
+}
+.grid-produtos{grid-template-columns:minmax(0,1fr);gap:1.25rem;}
+.cartao-produto{
+  border-radius:20px;
+  border-color:rgba(255,255,255,.38);
+  box-shadow:0 12px 32px rgba(22,13,36,.18);
+  transform:none;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.cartao-produto:hover,.cartao-produto:active{transform:none;box-shadow:0 12px 32px rgba(22,13,36,.18);}
+.imagem-produto{aspect-ratio:4/3;padding:clamp(.75rem,3vw,1.25rem);}
+.imagem-produto img{transition:transform .35s ease;}
+.info-produto{padding:1.15rem;text-align:left;}
+.info-produto h3{font-size:1.05rem;margin-bottom:.45rem;}
+.info-produto p{font-size:.84rem;margin-bottom:.85rem;color:#5e5662;}
+.preco{font-size:1.2rem;margin-bottom:.85rem;}
+.preco.orcamento{font-size:.95rem;}
+.btn-comprar,.btn-instagram{
+  min-height:48px;
+  padding:.75rem 1rem;
+  font-size:.86rem;
+  border-radius:14px;
+}
+.badge-cat{top:10px;left:10px;padding:4px 10px;font-size:.65rem;letter-spacing:.02em;}
+.whatsapp-flutuante{right:12px;bottom:12px;}
+.whatsapp-flutuante img{height:64px;max-width:calc(100vw - 24px);}
+.modal{backdrop-filter:blur(5px);}
+.modal-content{width:min(480px,100%);}
+.modal-content img{max-height:60vh;border-radius:18px;}
+.modal-botoes a{min-width:min(140px,100%);}
+footer{margin-bottom:0;padding:2.5rem 1rem;}
+
+@media(min-width:480px){
+  .grid-produtos{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .imagem-produto{aspect-ratio:1/1;}
+}
+@media(min-width:600px){
+  nav.cat-nav{justify-content:center;}
+  .grid-produtos{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;}
+}
+@media(min-width:768px){
+  .grid-produtos{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .info-produto{padding:1.25rem;}
+  .info-produto h3{font-size:1.08rem;margin-bottom:.55rem;}
+  .info-produto p{font-size:.86rem;margin-bottom:1rem;}
+  .preco{font-size:1.25rem;margin-bottom:1rem;}
+  .preco.orcamento{font-size:.98rem;}
+  .btn-comprar,.btn-instagram{padding:.78rem 1.1rem;font-size:.88rem;border-radius:14px;}
+  .whatsapp-flutuante{right:20px;bottom:20px;}
+  .whatsapp-flutuante img{height:76px;}
+}
+@media(min-width:1120px){
+  .grid-produtos{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.75rem;}
+}
+@media(hover:hover) and (pointer:fine){
+  .cartao-produto:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,.72);
+    box-shadow:0 20px 42px rgba(22,13,36,.25);
+  }
+  .cartao-produto:hover .imagem-produto img{transform:scale(1.045);}
+}
+@media(max-width:359px){
+  header{padding-inline:.625rem;}
+  main{padding-inline:.625rem;}
+  .info-produto{padding:1rem;}
+  .modal-botoes{flex-direction:column;}
+  .modal-botoes a{max-width:none;}
+}
 @media(max-width:767px){body{background-attachment:scroll;}}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
