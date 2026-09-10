@@ -83,6 +83,9 @@ nav.cat-nav a{
   border-radius:20px;
   transition:.2s;
   white-space:nowrap;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
 }
 nav.cat-nav a:hover, nav.cat-nav a:active{background:rgba(255,255,255,.28);}
 
@@ -105,6 +108,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
   font-size:.85rem;
   outline:none;
 }
+@media(max-width:767px){.search-wrap input{font-size:1rem;}}
 .search-wrap i{
   position:absolute;
   left:14px;
@@ -171,6 +175,10 @@ section h2::after{
   justify-content:center;
   padding:10px;
   position:relative;
+}
+.imagem-produto:focus-visible{
+  outline:3px solid var(--cor-principal-loja);
+  outline-offset:-5px;
 }
 .imagem-produto img{width:100%;height:100%;object-fit:contain;transition:transform .4s ease;}
 .cartao-produto:hover .imagem-produto img{transform:scale(1.06);}
@@ -274,6 +282,7 @@ section h2::after{
   justify-content:center;
   flex-direction:column;
   padding:1rem;
+  overscroll-behavior:contain;
 }
 .modal.ativo{display:flex;animation:aparecer .3s ease;}
 @keyframes aparecer{from{opacity:0;}to{opacity:1;}}
@@ -306,6 +315,7 @@ section h2::after{
   position:absolute;top:16px;right:22px;color:#fff;
   font-size:36px;font-weight:700;cursor:pointer;
   transition:color .3s;z-index:2001;background:none;border:0;
+  min-width:44px;min-height:44px;
 }
 .fechar-modal:hover{opacity:.7;}
 
@@ -720,9 +730,10 @@ footer p{color:#eaeaea;}
 </main>
 
 <!-- ============ MODAL ============ -->
-<div class="modal" id="modalImagem" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+<div class="modal" id="modalImagem" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
   <button type="button" class="fechar-modal" id="fecharModal" aria-label="Fechar detalhes do produto">&times;</button>
   <div class="modal-content">
+    <h2 class="visually-hidden" id="tituloModal">Detalhes do produto</h2>
     <img src="" alt="Imagem ampliada" id="imagemModal">
     <div class="modal-botoes">
       <a href="#" class="btn-comprar" id="btnPedirModal" target="_blank" rel="noopener noreferrer">
@@ -758,14 +769,19 @@ document.addEventListener('DOMContentLoaded', function(){
   const fecharModal = document.getElementById('fecharModal');
   const btnPedirModal = document.getElementById('btnPedirModal');
   const btnInstagramModal = document.getElementById('btnInstagramModal');
-  const cartoes = document.querySelectorAll('.cartao-produto');
+  const tituloModal = document.getElementById('tituloModal');
+  const cartoes = Array.from(document.querySelectorAll('.cartao-produto'));
+  const secoes = Array.from(document.querySelectorAll('main section'));
+  const elementosForaDoModal = Array.from(document.body.children).filter(elemento => elemento !== modal && elemento.tagName !== 'SCRIPT');
   let elementoAnteriorAoModal = null;
+  let overflowAnterior = '';
 
   cartoes.forEach(cartao=>{
     const imagemContainer = cartao.querySelector('.imagem-produto');
     const imagem = cartao.querySelector('.imagem-produto img');
     const linkWhats = cartao.querySelector('.btn-comprar').href;
     const linkInsta = cartao.getAttribute('data-instagram');
+    cartao.nomeNormalizado = (cartao.getAttribute('data-nome') || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
     imagemContainer.setAttribute('role', 'button');
     imagemContainer.setAttribute('tabindex', '0');
@@ -774,11 +790,14 @@ document.addEventListener('DOMContentLoaded', function(){
     function abrirModal(){
       imagemModal.src = imagem.src;
       imagemModal.alt = imagem.alt;
+      tituloModal.textContent = `Detalhes de ${imagem.alt}`;
       btnPedirModal.href = linkWhats;
       btnInstagramModal.href = linkInsta;
       elementoAnteriorAoModal = document.activeElement;
+      overflowAnterior = document.body.style.overflow;
       modal.classList.add('ativo');
       document.body.style.overflow = 'hidden';
+      elementosForaDoModal.forEach(elemento => { elemento.inert = true; });
       fecharModal.focus();
     }
 
@@ -793,26 +812,39 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function fechar(){
     modal.classList.remove('ativo');
-    document.body.style.overflow = '';
+    document.body.style.overflow = overflowAnterior;
+    elementosForaDoModal.forEach(elemento => { elemento.inert = false; });
     if(elementoAnteriorAoModal) elementoAnteriorAoModal.focus();
   }
   fecharModal.addEventListener('click', fechar);
   modal.addEventListener('click', function(e){ if(e.target===modal) fechar(); });
   document.addEventListener('keydown', function(e){
-    if(e.key==='Escape' && modal.classList.contains('ativo')) fechar();
+    if(!modal.classList.contains('ativo')) return;
+    if(e.key==='Escape') fechar();
+    if(e.key==='Tab'){
+      const elementosFocaveis = [fecharModal, btnPedirModal, btnInstagramModal];
+      const primeiro = elementosFocaveis[0];
+      const ultimo = elementosFocaveis[elementosFocaveis.length - 1];
+      if(e.shiftKey && document.activeElement === primeiro){
+        e.preventDefault();
+        ultimo.focus();
+      } else if(!e.shiftKey && document.activeElement === ultimo){
+        e.preventDefault();
+        primeiro.focus();
+      }
+    }
   });
 
   // BUSCA
   const busca = document.getElementById('buscaProduto');
   const statusBusca = document.getElementById('statusBusca');
   busca.addEventListener('input', function(){
-    const termo = busca.value.trim().toLowerCase();
+    const termo = busca.value.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     let totalVisivel = 0;
-    document.querySelectorAll('main section').forEach(section=>{
+    secoes.forEach(section=>{
       let algumVisivel = false;
       section.querySelectorAll('.cartao-produto').forEach(card=>{
-        const nome = card.getAttribute('data-nome') || '';
-        const visivel = nome.includes(termo);
+        const visivel = card.nomeNormalizado.includes(termo);
         card.style.display = visivel ? '' : 'none';
         if(visivel){
           algumVisivel = true;
