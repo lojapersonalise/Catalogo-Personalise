@@ -463,31 +463,111 @@ footer{margin-bottom:0;padding:2.5rem 1rem;}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
 }
+
+/* ESTRUTURA DE CATÁLOGO */
+.header-inner{
+  width:100%;max-width:1440px;margin:0 auto;
+  display:grid;grid-template-columns:minmax(180px,280px) minmax(280px,520px) minmax(180px,280px);
+  align-items:center;justify-content:space-between;gap:clamp(1rem,3vw,2.5rem);
+}
+.logo-container{margin:0;justify-self:start;}
+.logo-img{width:100%;max-width:280px;margin:0;}
+.search-wrap{width:100%;margin:0;}
+.header-action{
+  justify-self:end;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:.65rem 1rem;border-radius:14px;background:var(--cor-whatsapp);
+  color:var(--cor-destaque);font-size:.82rem;font-weight:700;text-decoration:none;text-align:center;
+}
+.header-action:hover{background:var(--cor-whatsapp-hover);}
+main{max-width:1440px;}
+.catalog-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(1.5rem,3vw,3rem);align-items:start;}
+.filter-panel{
+  position:sticky;top:1.5rem;margin-top:clamp(2.25rem,6vw,4.5rem);padding:1.25rem;
+  border:1px solid var(--cor-divisor);border-radius:18px;background:var(--cor-fundo-cartao);
+  box-shadow:0 12px 32px rgba(22,13,36,.18);
+}
+.filter-toggle{
+  display:none;width:100%;min-height:48px;border:0;border-radius:14px;padding:.75rem 1rem;
+  background:var(--cor-principal-loja);color:var(--cor-destaque);font:700 .9rem var(--fonte-texto);
+  align-items:center;justify-content:space-between;cursor:pointer;
+}
+.filter-title{font-family:var(--fonte-titulo);font-size:1.1rem;color:var(--cor-principal-loja);margin-bottom:1rem;}
+.filter-panel nav.cat-nav{display:grid;margin:0;padding:0;overflow:visible;gap:.45rem;}
+.filter-panel nav.cat-nav a{
+  width:100%;min-height:44px;padding:.65rem .75rem;border-color:var(--cor-divisor);border-radius:10px;
+  background:var(--cor-fundo-imagem);color:var(--cor-principal-loja);white-space:normal;
+}
+.filter-panel nav.cat-nav a:hover{background:var(--cor-divisor);}
+.catalog-content{min-width:0;}
+.catalog-content section:first-child{margin-top:clamp(2.25rem,6vw,4.5rem);}
+.catalog-content section h2{text-align:left;}
+.catalog-content section h2::after{margin-left:0;}
+.catalog-content .grid-produtos{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,2vw,1.5rem);}
+
+@media(min-width:1120px){
+  .catalog-content .grid-produtos{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(min-width:1280px){
+  .catalog-content .grid-produtos{grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media(max-width:767px){
+  header{padding:.85rem .75rem;}
+  .header-inner{grid-template-columns:minmax(0,1fr) auto;gap:.75rem;}
+  .logo-img{width:min(58vw,240px);}
+  .search-wrap{grid-column:1/-1;grid-row:2;}
+  .header-action{width:46px;height:46px;padding:0;border-radius:50%;font-size:1.1rem;}
+  .header-action span{display:none;}
+  main{padding-inline:.75rem;}
+  .catalog-layout{display:block;}
+  .filter-panel{position:relative;top:auto;margin:1.25rem 0 0;padding:0;border:0;background:transparent;box-shadow:none;}
+  .filter-toggle{display:flex;}
+  .filter-title{display:none;}
+  .filter-panel nav.cat-nav{display:none;margin-top:.65rem;padding:.75rem;border-radius:14px;background:var(--cor-fundo-cartao);box-shadow:0 12px 32px rgba(22,13,36,.18);}
+  .filter-panel nav.cat-nav.aberto{display:grid;}
+  .catalog-content section:first-child{margin-top:2rem;}
+  .catalog-content section h2{text-align:center;}
+  .catalog-content section h2::after{margin-left:auto;}
+}
+@media(max-width:479px){
+  .catalog-content .grid-produtos{grid-template-columns:minmax(0,1fr);}
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-container">
-    <img src="logo-personalise.png" alt="Logo Loja Personalise" class="logo-img" onerror="this.style.display='none'">
-  </div>
-  <h1>Loja Personalise</h1>
+  <div class="header-inner">
+    <div class="logo-container">
+      <img src="logo-personalise.png" alt="Logo Loja Personalise" class="logo-img" onerror="this.style.display='none'">
+    </div>
+    <h1>Loja Personalise</h1>
 
-  <div class="search-wrap">
-    <i class="fas fa-search" aria-hidden="true"></i>
-    <label for="buscaProduto" class="visually-hidden">Buscar produto no catálogo</label>
-    <input type="search" id="buscaProduto" placeholder="Buscar produto..." autocomplete="off" aria-describedby="statusBusca">
-    <span id="statusBusca" class="visually-hidden" aria-live="polite"></span>
+    <div class="search-wrap">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <label for="buscaProduto" class="visually-hidden">Buscar produto no catálogo</label>
+      <input type="search" id="buscaProduto" placeholder="Buscar produto..." autocomplete="off" aria-describedby="statusBusca">
+      <span id="statusBusca" class="visually-hidden" aria-live="polite"></span>
+    </div>
+    <a href="https://wa.me/5564981111528?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20produtos." class="header-action" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i><span>Fale conosco</span>
+    </a>
   </div>
-
-  <nav class="cat-nav">
-    <a href="#canecas">Canecas</a>
-    <a href="#agendas">Agendas e Cadernos</a>
-    <a href="#presentes">Presentes Especiais</a>
-  </nav>
 </header>
 
 <main>
+  <div class="catalog-layout">
+    <aside class="filter-panel" aria-label="Filtros do catálogo">
+      <button type="button" class="filter-toggle" aria-expanded="false" aria-controls="filtrosCategorias">
+        <span><i class="fas fa-filter" aria-hidden="true"></i> Filtros</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+      </button>
+      <h2 class="filter-title">Categorias</h2>
+      <nav class="cat-nav" id="filtrosCategorias">
+        <a href="#canecas">Canecas</a>
+        <a href="#agendas">Agendas e Cadernos</a>
+        <a href="#presentes">Presentes Especiais</a>
+      </nav>
+    </aside>
+    <div class="catalog-content">
   <!-- ============ CANECAS ============ -->
   <section id="canecas">
     <h2>Canecas</h2>
@@ -847,6 +927,8 @@ footer{margin-bottom:0;padding:2.5rem 1rem;}
 
     </div>
   </section>
+    </div>
+  </div>
 </main>
 
 <!-- ============ MODAL ============ -->
@@ -892,9 +974,22 @@ document.addEventListener('DOMContentLoaded', function(){
   const tituloModal = document.getElementById('tituloModal');
   const cartoes = Array.from(document.querySelectorAll('.cartao-produto'));
   const secoes = Array.from(document.querySelectorAll('main section'));
+  const botaoFiltros = document.querySelector('.filter-toggle');
+  const filtrosCategorias = document.getElementById('filtrosCategorias');
   const elementosForaDoModal = Array.from(document.body.children).filter(elemento => elemento !== modal && elemento.tagName !== 'SCRIPT');
   let elementoAnteriorAoModal = null;
   let overflowAnterior = '';
+
+  botaoFiltros.addEventListener('click', function(){
+    const aberto = filtrosCategorias.classList.toggle('aberto');
+    botaoFiltros.setAttribute('aria-expanded', String(aberto));
+  });
+  filtrosCategorias.addEventListener('click', function(event){
+    if(event.target.matches('a') && window.matchMedia('(max-width: 767px)').matches){
+      filtrosCategorias.classList.remove('aberto');
+      botaoFiltros.setAttribute('aria-expanded', 'false');
+    }
+  });
 
   cartoes.forEach(cartao=>{
     const imagemContainer = cartao.querySelector('.imagem-produto');
